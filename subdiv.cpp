@@ -97,6 +97,7 @@ myPoint operator*(const std::vector<double> a, const std::vector<myPoint> b){
 }
 
 std::vector<GLdouble> mask;
+int depth = 0;
 
 std::vector<myPoint> subdivPoints(std::vector<myPoint> points, int depth){
   std::vector<myPoint> ret;
@@ -175,7 +176,7 @@ void lineSegment(void)
   if(kontrollPontok.size()>=4){
     glColor3f(1.0, 0.0, 0.0);
     glBegin(GL_LINE_LOOP);
-      for (myPoint akt : subdivPoints(kontrollPontok,6)) {
+      for (myPoint akt : subdivPoints(kontrollPontok,depth)) {
         glVertex2d(akt.x, akt.y);
       }
     glEnd();
@@ -218,6 +219,19 @@ void processMouseActiveMotion(GLint xMouse, GLint yMouse) {
 	}
 
 }
+void keyPressed (unsigned char key, int x, int y) {
+     switch (key){
+      	case 'w':
+          depth +=1;
+      	 glutPostRedisplay();
+      	break;
+      	case 's':
+          depth = depth>0?depth-1:depth;
+      	  glutPostRedisplay();
+      	break;
+    }
+}
+
 
 int main (int argc, char** argv)
 {
@@ -227,6 +241,7 @@ int main (int argc, char** argv)
 	glutInitWindowPosition(100, 100);
 	glutCreateWindow("B-Spline");
 	init();
+	glutKeyboardFunc(keyPressed);
 	glutDisplayFunc(lineSegment);
 	glutMouseFunc(processMouse);
 	glutMotionFunc(processMouseActiveMotion);
