@@ -147,10 +147,10 @@ void init(void)
 	glPointSize(10.0);
   glLineWidth(5.0);
 
-  mask.push_back(-1.00/16.00);
-  mask.push_back(9.00/16.00);
-  mask.push_back(9.00/16.00);
-  mask.push_back(-1.00/16.00);
+  mask.push_back(-3.00/16.00);
+  mask.push_back(11.00/16.00);
+  mask.push_back(11.00/16.00);
+  mask.push_back(-3.00/16.00);
 
 
 }
@@ -239,7 +239,7 @@ int main (int argc, char** argv)
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
 	glutInitWindowSize(700, 600);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("B-Spline");
+	glutCreateWindow("Subdiv");
 	init();
 	glutKeyboardFunc(keyPressed);
 	glutDisplayFunc(lineSegment);
